@@ -642,17 +642,37 @@ export async function inspectMigrations(url: string): Promise<MigrationState> {
   }
 }
 
+function isRecoverableDrizzleMigrationError(error: unknown): boolean {
+  if (!error || typeof error !== "object") return false;
+  const code = "code" in error && typeof error.code === "string" ? error.code : null;
+  if (code === "42P07" || code === "42710" || code === "42P16") {
+    return true;
+  }
+
+  const message = "message" in error && typeof error.message === "string"
+    ? error.message.toLowerCase()
+    : "";
+  return message.includes("already exists");
+}
+
 export async function applyPendingMigrations(url: string): Promise<void> {
   const initialState = await inspectMigrations(url);
   if (initialState.status === "upToDate") return;
 
   const sql = createUtilitySql(url);
+  let drizzleMigrationError: unknown = null;
 
   try {
     const db = drizzlePg(sql);
     await migratePg(db, { migrationsFolder: MIGRATIONS_FOLDER });
+  } catch (error) {
+    drizzleMigrationError = error;
   } finally {
     await sql.end();
+  }
+
+  if (drizzleMigrationError && !isRecoverableDrizzleMigrationError(drizzleMigrationError)) {
+    throw drizzleMigrationError;
   }
 
   let state = await inspectMigrations(url);

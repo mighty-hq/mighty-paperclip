@@ -1,0 +1,27 @@
+{
+  "version": "7",
+  "dialect": "postgresql",
+  "entries": [
+    {
+      "idx": 0,
+      "version": "7",
+      "when": 1773186054388,
+      "tag": "0000_married_bucky",
+      "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1773248423840,
+      "tag": "0001_robust_union_jack",
+      "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1773251662213,
+      "tag": "0002_damp_veda",
+      "breakpoints": true
+    }
+  ]
+}

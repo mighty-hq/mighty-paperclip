@@ -1,0 +1,16 @@
+{
+  "name": "AI Commands",
+  "id": "builtin.aicommands",
+  "version": "1.0.0",
+  "description": "Browse, search, and copy AI and Claude Code commands quickly.",
+  "icon": "🤖",
+  "commands": [
+    {
+      "name": "AI Commands Cheatsheet",
+      "id": "builtin-aicommands-open-cheatsheet",
+      "mode": "view",
+      "subtitle": "Developer Tools",
+      "keywords": ["ai", "claude", "commands", "cheatsheet", "prompt"]
+    }
+  ]
+}

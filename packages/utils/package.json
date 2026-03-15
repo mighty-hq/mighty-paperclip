@@ -1,0 +1,47 @@
+{
+  "name": "@mighty/utils",
+  "version": "0.1.0",
+  "private": true,
+  "main": "./src/index.ts",
+  "types": "./src/index.ts",
+  "exports": {
+    ".": "./src/index.ts",
+    "./localStorage": "./src/localStorage.ts",
+    "./cache": "./src/localStorage.ts",
+    "./bookmarkParser": "./src/bookmarkParser.ts",
+    "./platform": "./src/platform.ts",
+    "./store": "./src/store.ts",
+    "./useAI": "./src/useAI.ts"
+  },
+  "scripts": {
+    "typecheck": "tsc --noEmit",
+    "lint": "eslint src/"
+  },
+  "dependencies": {
+    "@mighty/api": "workspace:*",
+    "clsx": "^2.1.1",
+    "date-fns": "^4.1.0",
+    "dequal": "^2.0.3",
+    "electron-store": "^8.2.0",
+    "tailwind-merge": "^3.2.0"
+  },
+  "peerDependencies": {
+    "react": "catalog:"
+  },
+  "devDependencies": {
+    "@parcel/packager-ts": "^2.16.0",
+    "@parcel/transformer-typescript-types": "^2.16.0",
+    "@raycast/api": "1.99.4",
+    "@types/node": "catalog:",
+    "@typescript-eslint/eslint-plugin": "6.7.5",
+    "@typescript-eslint/parser": "6.7.5",
+    "eslint": "8.51.0",
+    "eslint-config-prettier": "9.0.0",
+    "eslint-plugin-import": "2.28.1",
+    "eslint-plugin-jest": "27.4.2",
+    "eslint-plugin-prettier": "5.0.0",
+    "eslint-plugin-react-hooks": "4.6.0",
+    "parcel": "^2.16.0",
+    "typescript": "catalog:"
+  }
+}

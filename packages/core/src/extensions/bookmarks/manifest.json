@@ -1,0 +1,16 @@
+{
+  "name": "Bookmarks",
+  "id": "builtin.bookmarks",
+  "version": "1.0.0",
+  "description": "Quick access to your favorite URLs",
+  "icon": "🔖",
+  "commands": [
+    {
+      "name": "Search Bookmarks",
+      "id": "search-bookmarks",
+      "mode": "filter",
+      "subtitle": "Bookmarks",
+      "keywords": ["bookmark", "url", "link", "website", "favorite"]
+    }
+  ]
+}

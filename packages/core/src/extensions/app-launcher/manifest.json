@@ -1,0 +1,16 @@
+{
+  "name": "Application Launcher",
+  "id": "builtin.app-launcher",
+  "version": "1.0.0",
+  "description": "Search and launch installed applications",
+  "icon": "🚀",
+  "commands": [
+    {
+      "name": "Search Applications",
+      "id": "search-apps",
+      "mode": "filter",
+      "subtitle": "Applications",
+      "keywords": ["app", "launch", "open", "run", "program"]
+    }
+  ]
+}

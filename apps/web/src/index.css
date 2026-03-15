@@ -1,0 +1,278 @@
+/* ── Theme System (imported before Tailwind so variables are available) ── */
+@import './styles/theme/colors.css';
+@import './styles/theme/shadcn.css';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ── Component & Animation overrides (after Tailwind) ── */
+@import './styles/theme/components.css';
+@import './styles/theme/animations.css';
+
+/* ── Base Styles ────────────────────────── */
+body {
+    margin: 0;
+    font-family:
+        -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+        "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+        sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+    font-family:
+        source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
+}
+
+@layer base {
+    * {
+        @apply border-border;
+    }
+    body {
+        @apply bg-background text-foreground;
+    }
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+.App {
+    min-height: 100vh;
+}
+
+@layer base {
+    [data-debug-wrapper="true"] {
+        display: contents !important;
+    }
+
+    [data-debug-wrapper="true"] > * {
+        margin-left: inherit;
+        margin-right: inherit;
+        margin-top: inherit;
+        margin-bottom: inherit;
+        padding-left: inherit;
+        padding-right: inherit;
+        padding-top: inherit;
+        padding-bottom: inherit;
+        column-gap: inherit;
+        row-gap: inherit;
+        gap: inherit;
+        border-left-width: inherit;
+        border-right-width: inherit;
+        border-top-width: inherit;
+        border-bottom-width: inherit;
+        border-left-style: inherit;
+        border-right-style: inherit;
+        border-top-style: inherit;
+        border-bottom-style: inherit;
+        border-left-color: inherit;
+        border-right-color: inherit;
+        border-top-color: inherit;
+        border-bottom-color: inherit;
+    }
+}
+
+/* Landing page keyframes */
+@keyframes loader-bolt {
+    0%   { stroke-dashoffset: 300; opacity: 0; }
+    20%  { opacity: 1; }
+    80%  { stroke-dashoffset: 0; opacity: 1; }
+    100% { stroke-dashoffset: 0; opacity: 0; }
+}
+
+@keyframes loader-ring-spin {
+    from { transform: rotate(0deg); }
+    to   { transform: rotate(360deg); }
+}
+
+@keyframes loader-ring-spin-reverse {
+    from { transform: rotate(0deg); }
+    to   { transform: rotate(-360deg); }
+}
+
+@keyframes loader-pulse {
+    0%, 100% { opacity: 0.15; transform: scale(0.95); }
+    50%       { opacity: 0.35; transform: scale(1.05); }
+}
+
+@keyframes loader-glow {
+    0%, 100% { filter: drop-shadow(0 0 8px #FF7A1A) drop-shadow(0 0 24px rgba(255,122,26,0.4)); }
+    50%       { filter: drop-shadow(0 0 16px #FF7A1A) drop-shadow(0 0 48px rgba(255,122,26,0.6)); }
+}
+
+@keyframes loader-fade-out {
+    0%   { opacity: 1; }
+    100% { opacity: 0; pointer-events: none; }
+}
+
+@keyframes hero-fade-up {
+    from { opacity: 0; transform: translateY(32px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes kb-float {
+    0%, 100% { transform: translateY(0px) rotate(-2deg); }
+    50%       { transform: translateY(-10px) rotate(2deg); }
+}
+
+@keyframes ticker-slide {
+    from { transform: translateX(0); }
+    to   { transform: translateX(-50%); }
+}
+
+@keyframes stat-count {
+    from { opacity: 0; transform: scale(0.85); }
+    to   { opacity: 1; transform: scale(1); }
+}
+
+.animate-loader-bolt {
+    stroke-dasharray: 300;
+    animation: loader-bolt 1.6s ease-in-out infinite;
+}
+
+.animate-loader-ring-1 {
+    transform-origin: center;
+    animation: loader-ring-spin 2.4s linear infinite;
+}
+
+.animate-loader-ring-2 {
+    transform-origin: center;
+    animation: loader-ring-spin-reverse 1.8s linear infinite;
+}
+
+.animate-loader-glow {
+    animation: loader-glow 1.6s ease-in-out infinite;
+}
+
+.animate-loader-pulse {
+    animation: loader-pulse 2s ease-in-out infinite;
+}
+
+.animate-loader-fade-out {
+    animation: loader-fade-out 0.6s ease-out 2.8s forwards;
+}
+
+.animate-hero-fade-up {
+    animation: hero-fade-up 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-kb-float {
+    animation: kb-float 4s ease-in-out infinite;
+}
+
+.animate-ticker {
+    animation: ticker-slide 28s linear infinite;
+}
+
+/* Grid overlay pattern for hero */
+.grid-overlay {
+    background-image:
+      linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+    background-size: 48px 48px;
+}
+
+/* Orange glow orb */
+.glow-orb {
+    background: radial-gradient(circle, rgba(255,122,26,0.18) 0%, transparent 70%);
+}
+
+/* Keyboard key style */
+.kb-key {
+    background: linear-gradient(180deg, #2a2a2a 0%, #1a1a1a 100%);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-bottom: 3px solid rgba(0,0,0,0.6);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.08);
+}
+
+/* Dark dropdown/select styling */
+select,
+select option {
+    background-color: #1a1a2e;
+    color: #e5e7eb;
+}
+
+select option:checked {
+    background-color: #2563eb;
+    color: white;
+}
+
+/* Custom Scrollbar */
+.custom-scrollbar::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 4px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 4px;
+    transition: background 0.2s;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.3);
+}
+
+/* Animations */
+@keyframes slide-in-from-top-4 {
+    from {
+        transform: translateY(-1rem);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slide-in-from-bottom-4 {
+    from {
+        transform: translateY(1rem);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes fade-in {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.animate-in {
+    animation-fill-mode: both;
+}
+
+.slide-in-from-top-4 {
+    animation-name: slide-in-from-top-4;
+}
+
+.slide-in-from-bottom-4 {
+    animation-name: slide-in-from-bottom-4;
+}
+
+.fade-in {
+    animation-name: fade-in;
+}
+
+.duration-200 {
+    animation-duration: 200ms;
+}
+
+.duration-300 {
+    animation-duration: 300ms;
+}

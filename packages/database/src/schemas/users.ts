@@ -1,0 +1,70 @@
+import {
+  type AnyPgColumn,
+  boolean as pgBoolean,
+  index,
+  pgTable,
+  text,
+  timestamp,
+  uniqueIndex,
+  uuid,
+  varchar,
+} from 'drizzle-orm/pg-core';
+import { createdAt, updatedAt } from './helpers';
+import { fileAssets } from './file-assets';
+
+export const users = pgTable(
+  'users',
+  {
+    id: uuid('id').defaultRandom().primaryKey(),
+    password: varchar('password', { length: 128 }).notNull(),
+    lastLogin: timestamp('last_login', { withTimezone: true }),
+    username: varchar('username', { length: 128 }).notNull(),
+    mobileNumber: varchar('mobile_number', { length: 255 }),
+    email: varchar('email', { length: 255 }),
+    firstName: varchar('first_name', { length: 255 }).notNull(),
+    lastName: varchar('last_name', { length: 255 }).notNull(),
+    avatar: text('avatar'),
+    dateJoined: timestamp('date_joined', { withTimezone: true }).defaultNow().notNull(),
+    createdAt,
+    updatedAt,
+    lastLocation: varchar('last_location', { length: 255 }),
+    createdLocation: varchar('created_location', { length: 255 }),
+    isSuperuser: pgBoolean('is_superuser').notNull().default(false),
+    isManaged: pgBoolean('is_managed').notNull().default(false),
+    isPasswordExpired: pgBoolean('is_password_expired').notNull().default(false),
+    isActive: pgBoolean('is_active').notNull().default(true),
+    isStaff: pgBoolean('is_staff').notNull().default(false),
+    isEmailVerified: pgBoolean('is_email_verified').notNull().default(false),
+    isPasswordAutoset: pgBoolean('is_password_autoset'),
+    token: varchar('token', { length: 64 }),
+    userTimezone: varchar('user_timezone', { length: 255 }).notNull().default('UTC'),
+    lastActive: timestamp('last_active', { withTimezone: true }),
+    lastLoginTime: timestamp('last_login_time', { withTimezone: true }),
+    lastLogoutTime: timestamp('last_logout_time', { withTimezone: true }),
+    lastLoginIp: varchar('last_login_ip', { length: 255 }),
+    lastLogoutIp: varchar('last_logout_ip', { length: 255 }),
+    lastLoginMedium: varchar('last_login_medium', { length: 20 }),
+    lastLoginUagent: text('last_login_uagent'),
+    tokenUpdatedAt: timestamp('token_updated_at', { withTimezone: true }),
+    isBot: pgBoolean('is_bot').notNull().default(false),
+    coverImage: varchar('cover_image', { length: 800 }),
+    displayName: varchar('display_name', { length: 255 }).notNull(),
+    avatarAssetId: uuid('avatar_asset_id').references((): AnyPgColumn => fileAssets.id),
+    coverImageAssetId: uuid('cover_image_asset_id').references((): AnyPgColumn => fileAssets.id),
+    botType: varchar('bot_type', { length: 30 }),
+    isEmailValid: pgBoolean('is_email_valid').notNull().default(false),
+    maskedAt: timestamp('masked_at', { withTimezone: true }),
+    isPasswordResetRequired: pgBoolean('is_password_reset_required').notNull().default(false),
+  },
+  (table) => ({
+    emailUniqueIdx: uniqueIndex('user_email_key').on(table.email),
+    usernameUniqueIdx: uniqueIndex('user_username_key').on(table.username),
+    usernameLikeIdx: index('user_username_cf016618_like').on(table.username),
+    emailLikeIdx: index('user_email_54dc62b2_like').on(table.email),
+    avatarAssetIdx: index('users_avatar_asset_id_50fa2043').on(table.avatarAssetId),
+    coverImageAssetIdx: index('users_cover_image_asset_id_b9679cbc').on(table.coverImageAssetId),
+  })
+);
+
+export type User = typeof users.$inferSelect;
+export type NewUser = typeof users.$inferInsert;

@@ -1,0 +1,16 @@
+{
+  "name": "Mighty AI",
+  "id": "builtin.mighty-ai",
+  "version": "1.0.0",
+  "description": "Chat with Mighty AI and generate productivity assets.",
+  "icon": "🤖",
+  "commands": [
+    {
+      "name": "Mighty AI",
+      "id": "mighty-ai-open-chat",
+      "mode": "view",
+      "subtitle": "AI Assistant",
+      "keywords": ["ai", "assistant", "chat", "mighty ai", "generate"]
+    }
+  ]
+}

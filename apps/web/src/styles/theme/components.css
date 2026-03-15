@@ -1,0 +1,90 @@
+/*
+ * ============================================
+ * COMPONENT STYLES — Grouped by Component Type
+ * ============================================
+ * Component-specific overrides that reference the
+ * theme tokens from colors.css and shadcn.css.
+ *
+ * Organized by component category so it's easy to find
+ * and update styles for a specific component type.
+ */
+
+/* ── Form Controls ──────────────────────── */
+select,
+select option {
+  background-color: var(--bg-secondary);
+  color: var(--text-primary);
+}
+
+select option:checked {
+  background-color: var(--brand-primary);
+  color: white;
+}
+
+/* ── Scrollbar ──────────────────────────── */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: var(--bg-hover);
+  border-radius: 4px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: var(--border-strong);
+  border-radius: 4px;
+  transition: background 0.2s;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+[data-theme="light"] .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 0, 0, 0.3);
+}
+
+/* ── Selection ──────────────────────────── */
+::selection {
+  background-color: var(--brand-primary-muted);
+  color: var(--text-primary);
+}
+
+/* ── Focus ──────────────────────────────── */
+:focus-visible {
+  outline: 2px solid var(--brand-primary);
+  outline-offset: 2px;
+}
+
+/* ── Debug Wrapper ──────────────────────── */
+[data-debug-wrapper="true"] {
+  display: contents !important;
+}
+
+[data-debug-wrapper="true"] > * {
+  margin-left: inherit;
+  margin-right: inherit;
+  margin-top: inherit;
+  margin-bottom: inherit;
+  padding-left: inherit;
+  padding-right: inherit;
+  padding-top: inherit;
+  padding-bottom: inherit;
+  column-gap: inherit;
+  row-gap: inherit;
+  gap: inherit;
+  border-left-width: inherit;
+  border-right-width: inherit;
+  border-top-width: inherit;
+  border-bottom-width: inherit;
+  border-left-style: inherit;
+  border-right-style: inherit;
+  border-top-style: inherit;
+  border-bottom-style: inherit;
+  border-left-color: inherit;
+  border-right-color: inherit;
+  border-top-color: inherit;
+  border-bottom-color: inherit;
+}
